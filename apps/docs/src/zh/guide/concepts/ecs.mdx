@@ -40,51 +40,51 @@ ECS 方案
 - Layer 对应 ECS - System
 ```jsx pure
 class FlowDocument {
-dataDefines: [
-  NodePositionData,
-  NodeFormData,
-  NodeLineData
-]
-nodeEntities: Entity[] = []
+  dataDefines: [
+    NodePositionData,
+    NodeFormData,
+    NodeLineData
+  ]
+  nodeEntities: Entity[] = []
 }
 
 
 class Entity {
-id: string // 只有id 不带数据
-getData: (dataId: string) => EntityData
+  id: string // 只有id 不带数据
+  getData: (dataId: string) => EntityData
 }
 
 // 渲染线条
 class LinesLayer {
-@observeEntityData(NodeLineData) lines
-render() {
-  return lines.map(line => <Line data={line} />)
-}
+  @observeEntityData(NodeLineData) lines
+  render() {
+    return lines.map(line => <Line data={line} />)
+  }
 }
 
 // 渲染节点位置
 class NodePositionsLayer {
-@observeEntityData(NodePositionData) positions
-return() {
+  @observeEntityData(NodePositionData) positions
+  return() {
 
-}
+  }
 }
 
 // 渲染节点表单
 class  NodeFormsLayer {
   @observeEntityData(NodeFormData) contents
-return() {}
+  return() {}
 }
 
 class Playground {
-layers: [
-  LinesLayer, // 线条渲染
-  NodePositionsLayer, // 位置渲染
-  NodeFormsLayer // 内容渲染
-]，
-render() {
-  return this.layers.map(layer => layer.render())
-}
+  layers: [
+    LinesLayer, // 线条渲染
+    NodePositionsLayer, // 位置渲染
+    NodeFormsLayer // 内容渲染
+  ]，
+  render() {
+    return this.layers.map(layer => layer.render())
+  }
 }
 ```
 优点：
